@@ -437,6 +437,9 @@
             for(i = 0; i < brs.length; i++){
                 br = brs[i];
                 if(br && br.classList.contains(doctored.CONSTANTS.intentional_linebreak)) continue;
+                if(br && br.attributes.type && br.attributes.type.value === "_moz") {
+                    br.delete(); // Ugly, hardcoded fix for Firefoxes newest 'feature'
+                }
                 block = doctored.util.get_closest_block(br);
                 block_clone = block.cloneNode(true);
                 block.parentNode.insertBefore(block_clone, block);
@@ -469,6 +472,7 @@
                     node.parentNode.removeChild(node);
                 }
             }
+            
         },
         to_xml_string: function(xml_element){
             return (new XMLSerializer()).serializeToString(xml_element);
