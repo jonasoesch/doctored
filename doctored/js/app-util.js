@@ -602,6 +602,18 @@
             }
             return within;
         },
+        within_delete_elemente: function(target, position) {
+            var within = false,
+            target_offset;
+
+            if(position === undefined) return false;
+            target_offset = target.getBoundingClientRect();
+            if(target.classList.contains(doctored.CONSTANTS.block_class) && position.x > target_offset.right - doctored.CONSTANTS.delete_label_width_in_pixels) {
+                within = true;
+            }
+            return within;
+
+        },
         rename_keys: function(attributes, attribute_mapping){
             var new_attributes = {},
                 key;

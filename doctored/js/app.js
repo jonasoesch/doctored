@@ -231,7 +231,7 @@
                     this.root.classList.remove("valid");
                 }
             },
-            get_xml_string: function(){
+           get_xml_string: function(){
                 if(this.root.childNodes.length === 0) return false;
 
                 return doctored.CONSTANTS.xml_declaration +
@@ -796,6 +796,7 @@
                     target   = event.toElement || event.target,
                     mouse_position = event.x || event.clientX ? {x:event.x || event.clientX, y:event.y || event.clientY} : undefined,
                     within_pseudoelement = doctored.util.within_pseudoelement(target, mouse_position),
+                    within_delete_element = doctored.util.within_delete_elemente(target, mouse_position),
                     new_doctored_selection,
                     target_clone;
 
@@ -807,6 +808,8 @@
                         doctored.util.display_dialog_around_inline(new_doctored_selection, this.dialog, mouse_position, this.schema);
                     } else if(within_pseudoelement === doctored.CONSTANTS.edit_element_css_cursor) {
                         doctored.util.display_element_dialog(target, this.dialog, mouse_position, target.parentNode.getAttribute("data-element"), this.schema);
+                    } else if(within_delete_element) {
+                        target.remove();
                     }
                 }
             },
@@ -881,6 +884,7 @@
         current_tab_class:                "doctored-current",
         inline_label_height_in_pixels:    10,
         block_label_width_in_pixels:      25,
+        delete_label_width_in_pixels:     25,
         edit_element_css_cursor:          "pointer",
         doctored_container_class:         "doctored",
         custom_element_value:             "(custom)",

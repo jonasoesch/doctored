@@ -55,6 +55,18 @@
             transform: rotate(90deg) translate(1em, 0);
         }
 
+        .doctored div.doctored-block:before {
+            clear:both;
+            position:absolute;
+            display:inline-block;
+            right: 0;
+            top: 0;
+            content: "×"; /*\271B \271A \2795 */
+            padding: 0.5em; 
+            white-space:nowrap;
+            cursor: pointer;
+        }
+
         .doctored div.doctored-block.has_errors:before {
             content: attr(data-error);
             overflow:visible;
