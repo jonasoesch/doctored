@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	Mickael Justo 
+	Louisa Freymond
+	Jonas Oesch
+	
+	(HEIG VD - University of applied sciences)
+	
+	AnnonceVoiture
+		|__Marque !
+		|__Modele !
+		|__DateParution !
+		|__Prix@unite !
+		|__Photos !
+		|	|__Photo*
+		|__AnneeCirculation !
+		|__Kilometrage
+		|__BoiteAVitesse
+		|__Carburant
+		|__Cylindree@unite
+		|__Puissance@unite
+		|__NbPortes
+		|__NbSieges
+		|__CouleurExterieure !
+		|__Commentaires
+		|__Vendeur
+				|__Username !
+				|__Prenom !
+				|__Nom !
+				|__Telephone 
+				|__Email !
+				|__Adresse !
+				|__NPA !
+				|__Ville !
+				|__Pays !
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	
+	<xs:element name="AnnonceVoiture">
+		<xs:annotation>
+			<xs:documentation>A car advertisement to be put on a website</xs:documentation>
+		</xs:annotation>
+		
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Marque" type="xs:string" minOccurs="1" maxOccurs="1"/><!-- Enforced -->
+				<xs:element name="Modele" type="xs:string" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+				<xs:element name="DateParution" type="xs:date" minOccurs="1" maxOccurs="1"/><!-- Enforced -->
+			
+				<xs:element name="Prix" minOccurs="1" maxOccurs="1"><!-- Enforced -->
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:nonNegativeInteger">
+								<xs:attribute name="unite" type="xs:string" use="required">
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Photos" minOccurs="1" maxOccurs="1"><!-- Enforced -->
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Photo" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="source" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AnneeCirculation" type="xs:date" minOccurs="1" maxOccurs="1"/><!-- Enforced -->
+				<xs:element name="Kilometrage" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="BoiteAVitesse" minOccurs="0" maxOccurs="1">
+					<xs:simpleType>
+						<!-- This won't change in the foreseeable future -->
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Automatique"/>
+							<xs:enumeration value="Semi-Automatique"/>
+							<xs:enumeration value="Manuel"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Carburant" type="xs:string" minOccurs="0" maxOccurs="1" />
+				<xs:element name="Cylindree" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="unite" type="xs:string" use="required" /><!-- Enforced -->
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+
+				<xs:element name="Puissance" minOccurs="0" maxOccurs="1" >
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:nonNegativeInteger">
+								<xs:attribute name="unite" type="xs:string" use="required" /><!-- Enforced -->
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NbPortes" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" />
+				<xs:element name="NbSieges" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1" />
+				<xs:element name="CouleurExterieure" type="Couleur" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+				<xs:element name="Commentaires" type="xs:string" minOccurs="0" maxOccurs="1" />
+				
+				<xs:element name="Vendeur">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Username" type="xs:string" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+							<xs:element name="Prenom" type="xs:string" minOccurs="1" maxOccurs="1" />
+							<xs:element name="Nom" type="xs:string" minOccurs="1" maxOccurs="1" />
+							<xs:element name="Telephone" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="Email" type="xs:string" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+							<xs:element name="Adresse" type="xs:string" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="NPA" type="xs:nonNegativeInteger" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+							<xs:element name="Ville" type="xs:string" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+							<xs:element name="Pays" type="xs:string" minOccurs="1" maxOccurs="1" /><!-- Enforced -->
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Colors are restricted for easier categorization -->
+	<xs:simpleType name="Couleur">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="anthracite" />
+			<xs:enumeration value="argent" />
+			<xs:enumeration value="beige" />
+			<xs:enumeration value="blanc" />
+			<xs:enumeration value="bleu fonce" />
+			<xs:enumeration value="bleu clair" />
+			<xs:enumeration value="bordeaux" />
+			<xs:enumeration value="brun" />
+			<xs:enumeration value="gris" />
+			<xs:enumeration value="jaune" />
+			<xs:enumeration value="noir" />
+			<xs:enumeration value="or" />
+			<xs:enumeration value="orange" />
+			<xs:enumeration value="rose" />
+			<xs:enumeration value="rouge" />
+			<xs:enumeration value="turquoise" />
+			<xs:enumeration value="vert" />
+			<xs:enumeration value="violet" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

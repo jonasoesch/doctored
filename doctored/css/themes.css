@@ -33,9 +33,9 @@ samp.doctored-tooltip.doctored-theme-flat {
         margin:0px;
         padding-top:0.5em;
         padding-bottom: 1em;
-        padding-left: 2.5em; /* padding right should be left undefined */
+        padding-left: 36px; /* padding right should be left undefined */
         border-radius: 0px;
-        border-bottom: solid 1px #ccc;         
+        border-bottom: solid 1px #f9f9f9;         
         background: #fff;
     }
 
@@ -60,9 +60,14 @@ samp.doctored-tooltip.doctored-theme-flat {
         }
 
         .doctored.doctored-theme-flat div.doctored-block:after {
-            color:#666666;
+            color:#666666; 
             font-weight:bold;
-            font-size:small;
+            font-size:12px;
+            font-family: Raleway, sans-serif;
+            line-height: 12px;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
         }
 
         .doctored.doctored-theme-flat div.doctored-block.has_errors:before {
@@ -1008,4 +1013,405 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
             background: white;
             color: black;
         }
+
+
+/* ––––––––– Habitat Theme ---------- */
+
+.doctored.doctored-theme-habitat:before {
+        text-align:center;
+        color: #777;
+        font-size: small;
+        font-weight:bold;
+    }
+
+        .doctored.doctored-theme-habitat.invalid:before {
+            text-align:right;
+            color: #777;
+            background-color: none;
+            margin-right:40px;
+        }
+
+
+        .doctored.doctored-theme-habitat.valid:before {
+            padding: 2px;
+            text-align:center;
+            color: white;
+            background: #6b6;
+        }
+
+    .doctored.doctored-theme-habitat .doctored-block {
+        margin:0px;
+        padding-top:0.5em;
+        padding-bottom: 1em;
+        padding-left: 36px; /* padding right should be left undefined */
+        border-radius: 0px;
+        border-bottom: solid 1px #f9f9f9;         
+        background: #fff;
+        overflow: visible;
+    }
+
+        .doctored.doctored-theme-habitat .doctored-block .doctored-block {
+            padding:0.5em 0px 1em 2.5em;
+            margin-top: 0.2em;
+            margin-right: 0px;
+            background: #eeeeee;
+            background: rgba(30,30,30,0.1);
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 0px;
+        }
+
+        .doctored.doctored-theme-habitat div.doctored-block:first-child {
+            border-top-left-radius:2px;
+            border-top-right-radius: 2px;
+        }
+
+        .doctored.doctored-theme-habitat  > div.doctored-block:last-child {
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        .doctored.doctored-theme-habitat div.doctored-block:after {
+            color:#666666; 
+            font-weight:bold;
+            font-size:12px;
+            font-family: Raleway, sans-serif;
+            line-height: 12px;
+            font-style: normal;
+            margin: 0;
+            padding: 10px;
+            left: -13px;
+            top: 0px;
+            background-color: #ccc;
+            display: none;
+        }
+/*
+        .doctored.doctored-theme-habitat div.doctored-block:hover:after {
+            display: block;
+        }
+*/
+        .doctored.doctored-theme-habitat div.doctored-block.selected:after {
+            display: block;
+        }
+
+        .doctored.doctored-theme-habitat div.doctored-block.has_errors:before {
+            font-size:x-small;
+            padding:4px 5px 4px 7px;
+            border-radius:2px;
+            border: solid 1px #c44;
+            font-weight:bold;
+            color: #c44;
+        }
+
+    .doctored.doctored-theme-habitat div.doctored-inline {
+        background: #555555;
+        background: rgba(30,30,30,0.1);
+        padding-bottom:0.6em;
+        border-radius: 2px;
+        vertical-align: text-top;
+    }
+
+        .doctored.doctored-theme-habitat div.doctored-inline:after {
+            color:#666666;
+            font-size:x-small;
+            font-weight:900;
+        }
+
+
+    menu.doctored-menu.doctored-theme-habitat {
+        margin-top:8px;
+        padding: 0px;
+        font-size:small;
+        font-weight:bold;
+        opacity: 0.9;
+        text-align:left;
+    }
+
+        menu.doctored-menu.doctored-theme-habitat:hover {
+           opacity: 1;
+        }
+
+        menu.doctored-menu.doctored-theme-habitat a {
+            display: inline-block;
+            padding:5px 9px;
+            margin-right:4px;
+            text-decoration:none;
+            background: white;
+            border: 1px solid #ccc;
+            color:#777777;
+            border-radius: 2px;
+        }
+
+        menu.doctored-menu.doctored-theme-habitat a:hover,
+        menu.doctored-menu.doctored-theme-habitat a.doctored-on {
+            background-color:#555;
+            color: #fff;
+        }
+
+        menu.doctored-menu.doctored-theme-habitat a:active {
+            background-color:#555;
+            border: solid 1px #555;
+        }
+
+    textarea.doctored-view-source-textbox.doctored-theme-habitat {
+        border: 1px solid #cccccc;
+        padding: 5px 10px;
+        outline: none;
+
+    }
+
+    div.doctored-view-source-resizer.doctored-theme-habitat {
+        width:16px;
+        background: none;
+        border: none;
+    }
+
+        div.doctored-view-source-resizer.doctored-theme-habitat:hover {
+            background: #aaa;
+        }
+
+    menu.doctored-dialog.doctored-theme-habitat {
+        background: #ffffff;
+        border: solid 1px #cccccc;
+        color: black;
+        border-radius: 2px;
+        padding: 2px;
+    }
+
+        menu.doctored-dialog.doctored-theme-habitat a.doctored-add-sibling-above,
+        menu.doctored-dialog.doctored-theme-habitat a.doctored-add-sibling-below {
+            color: #666;
+            margin-top:10px;
+        }
+
+            menu.doctored-dialog.doctored-theme-habitat a.doctored-add-sibling-above:hover,
+            menu.doctored-dialog.doctored-theme-habitat a.doctored-add-sibling-below:hover {
+                background: #eeeeee;
+            }
+
+    menu.doctored-dialog.doctored-theme-habitat * {
+        font-size:small;
+    }
+
+    menu.doctored-dialog.doctored-theme-habitat a {
+        padding:0px 5px;
+        color:#333;
+    }
+
+        menu.doctored-dialog.doctored-theme-habitat a:hover {
+            color: #000;
+        }
+
+    menu.doctored-dialog.doctored-theme-habitat label {
+        color: #cccccc;
+        text-align:left;
+        padding-left:5px;
+        font-weight:bold;
+        font-size:x-small;
+    }
+
+    menu.doctored-dialog.doctored-theme-habitat select {
+        width:160px;
+        background: #fff;
+        border: none;
+        outline: none;
+        color: black;
+        margin-left:2px;
+        border-radius:2px;
+        -webkit-appearance: none;
+        cursor: pointer;
+    }
+
+        menu.doctored-dialog.doctored-theme-habitat select:hover {
+            background: #eeeeee;
+        }
+
+        menu.doctored-dialog.doctored-theme-habitat select:focus {
+            border: none;
+            outline: none;
+        }
+
+        menu.doctored-dialog.doctored-theme-habitat select optgroup,
+        menu.doctored-dialog.doctored-theme-habitat select option {
+            background: white;
+            color: black;
+        }
+
+    menu.doctored-dialog.doctored-theme-habitat h6 {
+        border-top: solid 1px #eeeeee;
+        padding:5px 0px 0px 5px;
+        color: #666666;
+        margin:0px;
+        font-weight:bold;
+        font-size:x-small;
+    }
+
+    menu.doctored-dialog.doctored-theme-habitat div {
+        padding: 0px 0px 3px 0px;
+        color: #aaaaaa;
+    }
+
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-name,
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-value {
+            background: #eee;
+            color: black;
+            border: none;
+            width:65px;
+            outline: none;
+            border-radius:2px;
+        }
+
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-name:hover,
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-value:hover,
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-name:focus,
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-value:focus {
+            background: #ddd;
+        }
+
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-name {
+            clear:left;
+            text-align:right;
+            margin-left:5px;
+        }
+
+        menu.doctored-dialog.doctored-theme-habitat .doctored-attribute-value {
+            text-align:left;
+        }
+
+    .doctored.doctored-theme-habitat div.doctored-selection {
+        background: #006ddb;
+        border: solid 1px #ffffff;
+        border: solid 1px rgba(255,255,255,0);
+        border-left: 0px;
+        border-right: 0px;
+        color: white;
+    }
+
+    .doctored.doctored-theme-habitat div.doctored-selection:hover {
+        border: solid 1px #4477cc;
+        border-left: 0px;
+        border-right: 0px;
+    }
+
+    samp.doctored-tooltip.doctored-theme-habitat {
+        font-size: x-small;
+        border-radius: 2px;
+        font-weight:bold;
+        padding:2px 7px 3px 5px;
+        background: #c44;
+        color: #fff;
+    }
+
+    ul.doctored-tabs.doctored-theme-habitat {
+        text-transform:uppercase;
+        font-size:small;
+        text-decoration:none;
+        font-weight:bold;
+        border-bottom: solid 1px #ccc;
+    }
+
+        ul.doctored-tabs.doctored-theme-habitat li {
+            display: inline-block;
+            position:relative;
+            top: 1px;
+            background: #dddddd;
+            border: 1px solid #ccc;
+            color:#777777;
+            padding: 0px 5px;
+            vertical-align: top;
+            margin-right: 5px;
+        }
+
+            ul.doctored-tabs.doctored-theme-habitat li.doctored-current {
+                background: white;
+                border-bottom: none;
+                position:relative;
+                padding-bottom: 1px;
+                box-shadow: 0px 3px 0px -1px white;
+            }
+
+            ul.doctored-tabs.doctored-theme-habitat li.doctored-current.doctored-dragging-tab,
+            ul.doctored-tabs.doctored-theme-habitat li.doctored-dragging-tab {
+                box-shadow: 1px 1px 2px rgba(0,0,0,0.9);
+            }
+
+            ul.doctored-tabs.doctored-theme-habitat li.doctored-current.doctored-drop-target,
+            ul.doctored-tabs.doctored-theme-habitat li.doctored-drop-target {
+                border: dashed 1px #999999;
+                background: transparent;
+                width:100px;
+            }
+            
+
+            ul.doctored-tabs.doctored-theme-habitat li span {
+              display: inline-block;
+              text-overflow: ellipsis;
+              width: 100px;
+              white-space: nowrap;
+              overflow: hidden;
+              padding: 8px 0px 5px 8px;
+              cursor: pointer;
+           }
+
+           ul.doctored-tabs.doctored-theme-habitat li a {
+                display: inline-block;
+                vertical-align: top;
+                text-decoration: none;
+                color: #666;
+                font-family: monospace;
+                padding: 8px 5px 5px 5px;
+                font-weight:normal;
+           }
+
+                ul.doctored-tabs.doctored-theme-habitat li a:hover {
+                    color: #000;
+                }
+
+           ul.doctored-tabs.doctored-theme-habitat li.doctored-new-document {
+                margin-top:3px;
+                margin-left:0px;
+                background: none;
+
+                font-family: monospace;
+                font-weight: 200;
+                border: none;
+           }
+
+                ul.doctored-tabs.doctored-theme-habitat li.doctored-new-document a {
+                    padding: 4px 8px;
+                    border: solid 1px #bbb;
+                    color: #777;
+                    display: block;
+                }
+
+                ul.doctored-tabs.doctored-theme-habitat li.doctored-new-document a:hover {
+                    background: #fff;
+                }
+
+ 
+
+    menu.doctored-hamburger.doctored-theme-habitat {
+        padding: 0px;
+        background: white;
+        border: solid 1px black;
+        padding-right:5px;
+    }
+
+        menu.doctored-hamburger.doctored-theme-habitat a {
+            padding:0px 5px 0px 0px;
+            margin-left:5px;
+            text-decoration: none;
+            color: black;
+        }
+
+        menu.doctored-hamburger.doctored-theme-habitat select {
+            border: none;
+            outline: none;
+        }
+
+        menu.doctored-hamburger.doctored-theme-habitat option,
+        menu.doctored-hamburger.doctored-theme-habitat select {
+            background: white;
+            color: black;
+        }
+
 

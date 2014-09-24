@@ -132,7 +132,7 @@
                 this.hamburger_button.addEventListener('click', this_function(this.hamburger_button_click, this), false);
                 this.hamburger_menu = document.createElement("menu");
                 this.hamburger_menu.className = "doctored-hamburger";
-                this.hamburger_menu.innerHTML = '<a href title="Close">&times;</a><select><option value="" disabled selected>Choose Theme</option><option>Flat</option><option>Shadow</option><option>High Contrast</option></select>';
+                this.hamburger_menu.innerHTML = '<a href title="Close">&times;</a><select><option value="" disabled selected>Choose Theme</option><option>Flat</option><option>Shadow</option><option>High Contrast</option><option>Habitat</option></select>';
                 this.hamburger_menu.theme_chooser = $("select", this.hamburger_menu)[0];
                 this.hamburger_menu.theme_chooser.addEventListener('change', this_function(this.hamburger_change_theme, this), false);
                 this.hamburger_menu.close = $("a", this.hamburger_menu)[0];
@@ -223,7 +223,9 @@
                         }
                     }
                 }
-                if(errors && errors.error_lines && errors.error_lines.length === 0 && (errors.error_summary === undefined || errors.error_summary.message.length === 0)) {
+
+                console.log(errors);
+                if(errors && errors.error_lines && errors.error_lines.length === 0 && (errors.error_summary === undefined || errors.error_summary.length === 0)) {
                     this.root.classList.add("valid");
                     this.root.classList.remove("invalid");
                 } else {
@@ -799,6 +801,15 @@
                     within_delete_element = doctored.util.within_delete_elemente(target, mouse_position),
                     new_doctored_selection,
                     target_clone;
+
+                if(target.classList.contains("doctored-block")) {
+                    var selected = $(".selected"),
+                               i = 0;
+                    for(i; i < selected.length; i++) {
+                        selected.item(i).classList.remove("selected");
+                    }
+                    target.classList.add("selected");
+                }
 
                 this.dialog.style.display = "none";
                 doctored.util.remove_old_selection(this.dialog.target, this.dialog);

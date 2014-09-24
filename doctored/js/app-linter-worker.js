@@ -47,6 +47,7 @@
 					message:     undefined,
 					type:        undefined
 				};
+			console.log(line);
 			if(line.substr(0, xml_file.length + 1) === xml_file + ":" && line.indexOf("Relax-NG validity error") !== -1) {
 				response.type = "error_line";
 				line = line.substr(xml_file.length + 1).trim();
@@ -66,7 +67,7 @@
 			} else if(line.substr(0, xml_file.length + 1) === xml_file + " " && line.indexOf("fails to validate") !== -1){
 				response.type = "error_summary";
 				response.message = line.substr(xml_file.length + 1);
-			} else if(line.indexOf("parser error : Start tag expected")){
+			} else if(line.indexOf("parser error : Start tag expected") >= 0){
 				response.type = "error_summary";
 				response.message = "Malformed document.";
 			} else if(line.indexOf("document.xml validates") >= 0) {

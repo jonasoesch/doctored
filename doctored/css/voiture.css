@@ -1,0 +1,23 @@
+.doctored-block {
+    padding-bottom: 40px !important;
+}
+*[data-element=Marque] {
+    font-weight: bold;
+    font-size: 2em;
+    margin-left: -2em;;
+    padding: 0;
+}
+
+*[data-element=Modele] {
+    font-style: italic;
+}
+
+*[data-element=DateParution] {
+    font-style: italic;
+    font-size: 0.7em;
+}
+
+*[data-element=Prix] {
+    font-family: Courier;
+}
+
