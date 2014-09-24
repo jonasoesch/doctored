@@ -37,6 +37,7 @@ samp.doctored-tooltip.doctored-theme-flat {
         border-radius: 0px;
         border-bottom: solid 1px #f9f9f9;         
         background: #fff;
+        margin-right: 200px;
     }
 
         .doctored.doctored-theme-flat .doctored-block .doctored-block {
@@ -1047,7 +1048,8 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
         border-radius: 0px;
         border-bottom: solid 1px #f9f9f9;         
         background: #fff;
-        overflow: visible;
+        overflow: hidden;
+        margin-right: 200px;
     }
 
         .doctored.doctored-theme-habitat .doctored-block .doctored-block {
@@ -1081,7 +1083,7 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
             padding: 10px;
             left: -13px;
             top: 0px;
-            background-color: #ccc;
+            background-color: #eee;
             display: none;
         }
 /*

@@ -47,7 +47,7 @@
 					message:     undefined,
 					type:        undefined
 				};
-			console.log(line);
+
 			if(line.substr(0, xml_file.length + 1) === xml_file + ":" && line.indexOf("Relax-NG validity error") !== -1) {
 				response.type = "error_line";
 				line = line.substr(xml_file.length + 1).trim();
@@ -73,6 +73,12 @@
 			} else if(line.indexOf("document.xml validates") >= 0) {
 				response.type = "valid_document";
 				response.message = "Document is valid";
+			} else if (line.indexOf("document.xml:") >= 0){
+				response.line_number = line.match(/\d+/)[0]-1;
+				response.target = "hi";
+				response.message = line.match(/(\d+:)(.*)/)[2].replace(/element /, "").replace(/.+:/, "");
+				response.type = "error_line";
+				console.log(line);
 			} else {
 				console.log("Unable to parse xmlline_line: " + line);
 			}

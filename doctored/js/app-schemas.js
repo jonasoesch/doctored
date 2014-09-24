@@ -210,9 +210,9 @@
                                 if(node_attribute_ref && _this.schema_defines[node.nodeName][node_attribute_ref]) {
                                     //console.log("following ref", node.nodeName, node_attribute_ref, _this.schema_defines[node.nodeName][node_attribute_ref])
                                     gather_below([_this.schema_defines[node.nodeName][node_attribute_ref]], depth + 1);
-                                } else if(node_attribute_base && _this.schema_defines["xs:complexType"][node_attribute_base]) {
+                                } else if(node_attribute_base /*&& _this.schema_defines["xs:complexType"][node_attribute_base]*/) {
                                     //console.log("drop the base")
-                                    gather_below([_this.schema_defines["xs:complexType"][node_attribute_base]], depth + 1);
+                                    //gather_below([_this.schema_defines["xs:complexType"][node_attribute_base]], depth + 1);
                                 }
                                 node_attribute_name = node.getAttribute("name");
                             }
@@ -282,6 +282,13 @@
                 this_function(this.update_element_chooser, this)();
                 if(new_document) this_function(this.new_document, this)();
                 this_function(this.instance.lint_soon, this.instance)();
+                var elements = Object.keys(this.elements);
+                var style_pane = $(".styleSelect").item(0);
+                var html = "";
+                for(var i=0; i<elements.length; i++){
+                    html += "<li class='style' data-element='"+elements[i]+"'>"+elements[i]+"</li>";
+                }
+                style_pane.innerHTML = html;
             }, this);
         },
         update_element_chooser = function(){

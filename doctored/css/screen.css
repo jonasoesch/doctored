@@ -264,3 +264,33 @@ option.doctored-loading {
     font-style: italic;
 }
 
+.styleSelect {
+    width: 200px;
+    height: 1600px;
+    float: right;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    z-index: 10;
+    overflow: scroll;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-left: 1px solid #eee;
+}
+
+
+.styleSelect .style {
+    cursor: pointer;
+    list-style: none;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+}
+
+.selected {
+    box-shadow: inset 0 0 3px rgba(0,0,255,0.5);
+}
+
+.selected-style {
+    background-color: #eee;
+}

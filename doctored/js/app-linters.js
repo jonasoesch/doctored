@@ -62,6 +62,7 @@
         Worker_response: function(event){
             var linters = doctored.linters,
                 worker;
+
  
             if(!event || !event.data || event.data.index === undefined || event.data.index === -1) {
                 return console.log("Unidentified worker response ", event);

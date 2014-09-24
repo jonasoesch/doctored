@@ -165,6 +165,13 @@
                 this.root.parentNode.insertBefore(this.view_source_textarea, this.hamburger_menu);
                 this.root.parentNode.insertBefore(this.view_source_resizer, this.view_source_textarea);
 
+
+                this.styleSelect = document.createElement('div');
+                this.styleSelect.classList.add("styleSelect");       
+                this.styleSelect.innerHTML = "<ul></ul>";
+                this.root.parentNode.insertBefore(this.styleSelect, this.root);
+                this.styleSelect.addEventListener('click',   this_function(this.styleSelect_click, this), false);
+
                 if(manifest) {
                     this.manifest = JSON.parse(manifest);
                     for(i = 0; i < this.manifest.length; i++){
@@ -208,8 +215,10 @@
                     child_node,
                     line_number = 0;
 
+                    console.log(by_line);
                 for(i = 0; i < this.root.childNodes.length; i++){
                     child_node = this.root.childNodes[i];
+
                     if(child_node.nodeType === Node.ELEMENT_NODE){ //ignore text nodes etc
                         line_number += 1;
                         if(by_line[line_number]) {
@@ -224,7 +233,6 @@
                     }
                 }
 
-                console.log(errors);
                 if(errors && errors.error_lines && errors.error_lines.length === 0 && (errors.error_summary === undefined || errors.error_summary.length === 0)) {
                     this.root.classList.add("valid");
                     this.root.classList.remove("invalid");
@@ -804,12 +812,24 @@
 
                 if(target.classList.contains("doctored-block")) {
                     var selected = $(".selected"),
-                               i = 0;
+                        selected_style = $(".selected-style"),
+                               i = 0,
+                               j = 0;
+                    
                     for(i; i < selected.length; i++) {
                         selected.item(i).classList.remove("selected");
                     }
+
+                    for(j; j < selected_style.length; j++){
+                        selected_style.item(j).classList.remove("selected-style");
+                    }
+
                     target.classList.add("selected");
+                    var element = target.getAttribute("data-element");
+                    var style = $(".style[data-element="+element+"]").item(0);
+                    if(style) style.classList.add("selected-style");
                 }
+
 
                 this.dialog.style.display = "none";
                 doctored.util.remove_old_selection(this.dialog.target, this.dialog);
@@ -823,6 +843,24 @@
                         target.remove();
                     }
                 }
+            },
+            styleSelect_click: function(event) {
+                //doctored.util.preventDefault();
+                var to_change = $(".selected").item(0);
+                var style = event.target;
+
+                var new_element = style.getAttribute("data-element");
+                to_change.setAttribute("data-element", new_element);
+
+                var selected_style = $(".selected-style");
+                 for(var j = 0; j < selected_style.length; j++){
+                        selected_style.item(j).classList.remove("selected-style");
+                 }
+                 style.classList.add("selected-style");
+
+                 var schema_elements = $("element", this.schema.documentElement);
+
+                this.lint_soon();
             },
             clone_element_below: function(){
                 var target = this.dialog.target,

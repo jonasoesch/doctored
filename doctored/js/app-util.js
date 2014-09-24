@@ -596,7 +596,8 @@
         within_pseudoelement: function(target, position){
             var within = false,
                 target_offset;
-                
+
+
             if(position === undefined) return false;
             target_offset = target.getBoundingClientRect();
             if(target.classList.contains(doctored.CONSTANTS.inline_class)       && position.y > target_offset.top  - doctored.CONSTANTS.inline_label_height_in_pixels + target.offsetHeight) {
