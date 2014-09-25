@@ -1,6 +1,3 @@
-.doctored-block {
-    padding-bottom: 40px !important;
-}
 *[data-element=Marque] {
     font-weight: bold;
     font-size: 2em;
@@ -20,6 +17,10 @@
     font-family: Courier;
 }
 
-*[data-element=AnneCirculation] {
-	
+*[data-element=AnneeCirculation] {
+	color: orange;
+}
+
+*[data-element=Kilometrage] {
+	font-style: italic;
 }
