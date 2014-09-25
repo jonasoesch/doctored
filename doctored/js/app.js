@@ -166,11 +166,11 @@
                 this.root.parentNode.insertBefore(this.view_source_resizer, this.view_source_textarea);
 
 
-                this.styleSelect = document.createElement('div');
-                this.styleSelect.classList.add("styleSelect");       
-                this.styleSelect.innerHTML = "<ul></ul>";
-                this.root.parentNode.insertBefore(this.styleSelect, this.root);
-                this.styleSelect.addEventListener('click',   this_function(this.styleSelect_click, this), false);
+                this.style_select = document.createElement('div');
+                this.style_select.classList.add("style_select");       
+                this.style_select.innerHTML = "<ul></ul>";
+                this.root.parentNode.insertBefore(this.style_select, this.root);
+                this.style_select.addEventListener('click',   this_function(this.style_select_click, this), false);
 
                 if(manifest) {
                     this.manifest = JSON.parse(manifest);
@@ -776,12 +776,10 @@
                 // keyup event occuring in the editable area
                 var esc_key = doctored.CONSTANTS.key.esc,
                     enter_key = doctored.CONSTANTS.key.enter,
-                    browser_selection,
-                    parentNode;
+                    browser_selection = doctored.util.get_current_selection(),
+                    parentNode = browser_selection.getRangeAt(0).endContainer.parentNode;
 
                 if(event.keyCode === esc_key){
-                    browser_selection = doctored.util.get_current_selection();
-                    parentNode = browser_selection.getRangeAt(0).endContainer.parentNode;
                     doctored.util.display_element_dialog(parentNode, this.dialog, undefined, parentNode.getAttribute("data-element"), this.schema);
                     this.dialog.element_chooser.focus();
                 } else if(event.keyCode === enter_key && !event.shiftKey){
@@ -800,8 +798,13 @@
                 } else if(event.shiftKey === false){
                     doctored.util.this_function(this.click, this)(event);
                 }
+
+                this.new_element_selected(parentNode); // probably only on arrow keys and enter key
+
+
             },
             click: function(event){
+                
                 var browser_selection = doctored.util.get_current_selection(),
                     target   = event.toElement || event.target,
                     mouse_position = event.x || event.clientX ? {x:event.x || event.clientX, y:event.y || event.clientY} : undefined,
@@ -809,26 +812,6 @@
                     within_delete_element = doctored.util.within_delete_elemente(target, mouse_position),
                     new_doctored_selection,
                     target_clone;
-
-                if(target.classList.contains("doctored-block")) {
-                    var selected = $(".selected"),
-                        selected_style = $(".selected-style"),
-                               i = 0,
-                               j = 0;
-                    
-                    for(i; i < selected.length; i++) {
-                        selected.item(i).classList.remove("selected");
-                    }
-
-                    for(j; j < selected_style.length; j++){
-                        selected_style.item(j).classList.remove("selected-style");
-                    }
-
-                    target.classList.add("selected");
-                    var element = target.getAttribute("data-element");
-                    var style = $(".style[data-element="+element+"]").item(0);
-                    if(style) style.classList.add("selected-style");
-                }
 
 
                 this.dialog.style.display = "none";
@@ -843,8 +826,12 @@
                         target.remove();
                     }
                 }
+
+                if(target.classList.contains(doctored.CONSTANTS.block_class)) {
+                    this.new_element_selected(target);
+                }
             },
-            styleSelect_click: function(event) {
+            style_select_click: function(event) {
                 //doctored.util.preventDefault();
                 var to_change = $(".selected").item(0);
                 var style = event.target;
@@ -861,6 +848,26 @@
                  var schema_elements = $("element", this.schema.documentElement);
 
                 this.lint_soon();
+            },
+            new_element_selected: function(target) {
+                    var selected = $(".selected"), // potentially slow
+                        selected_style = $(".selected-style"), // this too → cache it somewhere?
+                               i = 0,
+                               j = 0;
+                    
+                    for(i; i < selected.length; i++) {
+                        selected.item(i).classList.remove("selected");
+                    }
+
+                    for(j; j < selected_style.length; j++){
+                        selected_style.item(j).classList.remove("selected-style");
+                    }
+
+                    target.classList.add("selected");
+                    var element = target.getAttribute("data-element");
+                    var style = $(".style[data-element="+element+"]").item(0);
+                    if(style) style.classList.add("selected-style");
+
             },
             clone_element_below: function(){
                 var target = this.dialog.target,
