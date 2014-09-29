@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (http://www.altova.com) by JMS (HEIG VD) -->
+<xs:schema xmlns="ns.comem.ch/admin/plansEtude/UniteEnseignement" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="ns.comem.ch/admin/plansEtude/UniteEnseignement" elementFormDefault="qualified">
+	<xs:include schemaLocation="Datatypes.xsd"/>
+	<xs:element name="Unite">
+		<xs:annotation>
+			<xs:documentation>Définit une unité d'enseignement</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Abreviation" type="NonEmptyString"/>
+				<xs:element name="Titre" type="NonEmptyString"/>
+				<xs:element name="Professeur" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Nom" type="NonEmptyString"/>
+							<xs:element name="Prenom" type="NonEmptyString"/>
+							<xs:element name="Email" type="xs:string"/>
+							<xs:element name="Login" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Objectifs">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Objectif" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="NonEmptyString">
+											<xs:attribute name="title" type="xs:boolean" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Contenus">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Contenu" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="NonEmptyString">
+											<xs:attribute name="title" type="xs:boolean" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Commentaires" type="NonEmptyString" minOccurs="0"/>
+				<xs:element name="Links" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Link" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Text" type="NonEmptyString"/>
+										<xs:element name="Url" type="NonEmptyString"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="periodes" type="xs:integer" use="required"/>
+			<xs:attribute name="statut" use="required">
+				<xs:simpleType>
+					<xs:restriction base="NonEmptyString">
+						<xs:enumeration value="Brouillon"/>
+						<xs:enumeration value="Final"/>
+						<xs:enumeration value="Valide"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="UUID" type="CoursID" use="required">
+				<xs:annotation>
+					<xs:documentation>Chaque cours est référencé par un ID unique</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
