@@ -731,6 +731,14 @@
         strip_tags: function(markup){
             return markup.replace(/<.*?>/g, '');
         },
+        remove_class_from_all_elements: function(class_name) {
+            var i = 0,
+                elements = document.getElementsByClassName(class_name);
+
+            for(i=0; i<elements.length; i++) {
+                elements.item(i).classList.remove(class_name);
+            }
+        },
         to_options_tags: function(list, complex){
             var escape_text = doctored.util.escape_text,
                 element_properties,

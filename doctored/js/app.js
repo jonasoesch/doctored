@@ -64,6 +64,10 @@
                 //window.localStorage.removeItem("doctored-manifest-" + this.id);
                 manifest = window.localStorage.getItem("doctored-manifest-" + this.id);
                 tab_current_index = window.localStorage.getItem("doctored-tab-current-index-" + this.id);
+
+                /**
+                 * Events editable field
+                 */
                 this.root.contentEditable = true;
                 this.root.className = doctored.CONSTANTS.doctored_container_class;
                 this.root.addEventListener("input",     this_function(this.lint_soon, this), false);
@@ -76,10 +80,14 @@
                 this.root.addEventListener('dragstart', this_function(this.move_element, this), false);
                 // prevent default to allow drop – what giant bullshit
                 this.root.addEventListener("dragover", function( event ) { event.preventDefault(); }, false);
-                this.root.addEventListener("dragenter", function(event) {event.target.classList.add("dropzone")}, false);
-                this.root.addEventListener("dragleave", function(event) {event.target.classList.remove("dropzone")}, false)
+                this.root.addEventListener("dragenter", function(event) {event.target.classList.add(doctored.CONSTANTS.dropzone_class)}, false);
+                this.root.addEventListener("dragleave", function(event) {event.target.classList.remove(doctored.CONSTANTS.dropzone_class)}, false)
                 this.root.addEventListener('drop', this_function(this.drop_element, this), false);
                 this.root.dragging_element = null;
+
+                /**
+                 * Build menu and schema-chooser
+                 */
                 this.menu = document.createElement('menu');
                 this.menu.className = "doctored-menu";
                 this.dialog = document.createElement('menu');
@@ -95,6 +103,10 @@
                 this.dialog.schema_chooser.addEventListener('change', this_function(this.schema_chooser_change, this), false);
                 this.dialog.schema_chooser_title = $('h6', this.dialog)[0];
                 this.dialog.attributes_title = $('h6', this.dialog)[2];
+
+                /*
+                 * Build element-chooser
+                 */
                 this.dialog.element_chooser = $('select', this.dialog)[1];
                 this.dialog.element_chooser.addEventListener('blur', this_function(this.element_chooser_change, this), false);
                 this.dialog.element_chooser.addEventListener('mouseup', this_function(this.element_chooser_change, this), false);
@@ -122,6 +134,10 @@
                 this.dialog.add_sibling_below.setAttribute("title", "Add element after");
                 this.dialog.add_sibling_below.addEventListener("click", this_function(this.clone_element_below, this), false);
                 this.dialog.add_siblings.appendChild(this.dialog.add_sibling_below);
+
+                /**
+                 * Tabs Interface
+                 */
                 this.tabs = document.createElement("ul");
                 this.tabs.className = "doctored-tabs";
                 this.tabs.tab_item_template = document.createElement("li");
@@ -213,10 +229,8 @@
                 event.preventDefault();
                 var insertedElement = event.target.parentNode.insertBefore(this.root.dragging_element, event.target);
                 this.dragging_element = null;
-                var dropzones = document.getElementsByClassName("dropzone");
-                for(var i=0; i<dropzones.length; i++) {
-                    dropzones.item(i).classList.remove("dropzone");
-                }
+
+                doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.dropzone_class);
             },
             lint: function(){
                 // send linting job to one of the workers
@@ -851,41 +865,30 @@
                 }
             },
             style_select_click: function(event) {
-                //doctored.util.preventDefault();
-                var to_change = $(".selected").item(0);
-                var style = event.target;
-
-                var new_element = style.getAttribute("data-element");
+                var style = event.target,
+                    to_change,
+                    new_element;
+                
+                to_change = $("."+doctored.CONSTANTS.selected_class).item(0);
+                new_element = style.getAttribute("data-element");
                 to_change.setAttribute("data-element", new_element);
 
-                var selected_style = $(".selected-style");
-                 for(var j = 0; j < selected_style.length; j++){
-                        selected_style.item(j).classList.remove("selected-style");
-                 }
-                 style.classList.add("selected-style");
-
-                 var schema_elements = $("element", this.schema.documentElement);
+                doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.selected_class+"-style"); 
+                style.classList.add(doctored.CONSTANTS.selected_class+"style");
 
                 this.lint_soon();
             },
             new_element_selected: function(target) {
-                    var selected = $(".selected"), // potentially slow
-                        selected_style = $(".selected-style"), // this too → cache it somewhere?
-                               i = 0,
-                               j = 0;
-                    
-                    for(i; i < selected.length; i++) {
-                        selected.item(i).classList.remove("selected");
-                    }
+                    var tag,
+                        style;
 
-                    for(j; j < selected_style.length; j++){
-                        selected_style.item(j).classList.remove("selected-style");
-                    }
+                    doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.selected_class);
+                    doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.selected_class+"-style");
 
-                    target.classList.add("selected");
-                    var element = target.getAttribute("data-element");
-                    var style = $(".style[data-element="+element+"]").item(0);
-                    if(style) style.classList.add("selected-style");
+                    target.classList.add(doctored.CONSTANTS.selected_class);
+                    tag = target.getAttribute("data-element");
+                    style = $(".style[data-element="+tag+"]").item(0);
+                    if(style) style.classList.add(doctored.CONSTANTS.selected_class+"-style");
 
             },
             clone_element_below: function(){
@@ -975,7 +978,9 @@
         text_area_resizer_maximum_pixels: 150, /* from right of error gutter*/
         minimum_tab_width:                4,
         drag_distance_activates_pixels:   25,
-        dialog_supression_wait_milliseconds: 5
+        dialog_supression_wait_milliseconds: 5,
+        dropzone_class:                   "dropzone",
+        selected_class:                   "selected"
     };
     doctored.CONSTANTS.block_class  = doctored.CONSTANTS.block_or_inline_class_prefix + 'block';
     doctored.CONSTANTS.inline_class = doctored.CONSTANTS.block_or_inline_class_prefix + 'inline';
