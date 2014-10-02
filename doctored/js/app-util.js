@@ -188,7 +188,7 @@
                             if(inline_elements && inline_elements.indexOf(element_name) >= 0) {
                                 display = doctored.CONSTANTS.inline_class;
                             }
-                            return '<div class="' + display + '" data-element="' + element_name + '"' + attributes + '>' + after;
+                            return '<div draggable="true" class="' + display + '" data-element="' + element_name + '"' + attributes + '>' + after;
                     });
         },
         encode_data_attributes: function(attributes){

@@ -73,6 +73,13 @@
                 this.root.addEventListener('keyup',     this_function(this.keyup_contentEditable, this), false);
                 this.root.addEventListener('keyup',     doctored.util.debounce(this.keyup_contentEditable_sync_view_source, _this.options.view_source_debounce_milliseconds, this), false);
                 this.root.addEventListener('mousemove', this_function(this.mousemove, this), false);
+                this.root.addEventListener('dragstart', this_function(this.move_element, this), false);
+                // prevent default to allow drop – what giant bullshit
+                this.root.addEventListener("dragover", function( event ) { event.preventDefault(); }, false);
+                this.root.addEventListener("dragenter", function(event) {event.target.classList.add("dropzone")}, false);
+                this.root.addEventListener("dragleave", function(event) {event.target.classList.remove("dropzone")}, false)
+                this.root.addEventListener('drop', this_function(this.drop_element, this), false);
+                this.root.dragging_element = null;
                 this.menu = document.createElement('menu');
                 this.menu.className = "doctored-menu";
                 this.dialog = document.createElement('menu');
@@ -197,6 +204,18 @@
 
                 if(this.options.onload) {
                     this_function(this.options.onload, this)();
+                }
+            },
+            move_element: function(event) {
+                this.root.dragging_element = event.target;
+            },
+            drop_element: function(event) {
+                event.preventDefault();
+                var insertedElement = event.target.parentNode.insertBefore(this.root.dragging_element, event.target);
+                this.dragging_element = null;
+                var dropzones = document.getElementsByClassName("dropzone");
+                for(var i=0; i<dropzones.length; i++) {
+                    dropzones.item(i).classList.remove("dropzone");
                 }
             },
             lint: function(){
