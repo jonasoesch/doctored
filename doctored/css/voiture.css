@@ -24,3 +24,53 @@
 *[data-element=Kilometrage] {
 	font-style: italic;
 }
+
+*[data-element=Seitenzahl] {
+	font-size: 10px;
+	margin-top: 100px;
+    background-color: #ffff99 !important;
+}
+
+*[data-element=Entscheid] {
+    font-family: Serif;
+}
+
+*[data-element=Titel_1] {
+	font-size: 40px;
+	color: blue;
+	font-weight: bold;
+	border-top: 3px solid;
+}
+
+*[data-element=Titel_2] {
+	font-size: 20px;
+	color: gray;
+	font-weight: bold;
+}
+
+*[data-element=Titel_3] {
+    font-weight:bold;
+}
+
+*[data-element=Zusammenfassung_dt] {
+	border-top: 3px solid;
+	border-bottom: 3px solid;
+    margin-bottom: 2em !important;
+}
+
+*[data-element=Zusammenfassung_fr] {
+	border-top: 3px solid;
+	border-bottom: 3px solid;
+}
+
+*[data-element=Bold] {
+	font-weight: bold; 
+}
+
+*[data-element=Kursiv] {
+	font-style: italic; 
+}
+
+.doctored.doctored-theme-flat .doctored-block .doctored-block {
+	background-color: #fff !important;
+}

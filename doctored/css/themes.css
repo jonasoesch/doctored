@@ -1045,34 +1045,21 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
         padding-bottom: 1em;
         padding-left: 36px; /* padding right should be left undefined */
         border-radius: 0px;
-        border-bottom: solid 1px #f9f9f9;         
         background: #fff;
-        overflow: hidden;
-        margin-right: 200px;
+        overflow: visible;
+        position: relative;
+        padding-right: 0 !important;
+        box-shadow: 0 0 3px rgba(200,200,200,0.3);
     }
 
-        .doctored.doctored-theme-habitat .doctored-block .doctored-block {
-            padding:0.5em 0px 1em 2.5em;
-            margin-top: 0.2em;
-            margin-right: 0px;
-            background: #eeeeee;
-            background: rgba(30,30,30,0.1);
-            border-bottom-right-radius: 0px;
-            border-top-left-radius: 0px;
-        }
+    .doctored.doctored-theme-habitat .doctored-block.selected {
+        background-color: rgba(200,200,255,0.02);
+    }
 
-        .doctored.doctored-theme-habitat div.doctored-block:first-child {
-            border-top-left-radius:2px;
-            border-top-right-radius: 2px;
-        }
 
-        .doctored.doctored-theme-habitat  > div.doctored-block:last-child {
-            border-bottom-left-radius: 2px;
-            border-bottom-right-radius: 2px;
-        }
 
         .doctored.doctored-theme-habitat div.doctored-block:after {
-            color:#666666; 
+            color:#fff; 
             font-weight:bold;
             font-size:12px;
             font-family: Raleway, sans-serif;
@@ -1080,18 +1067,29 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
             font-style: normal;
             margin: 0;
             padding: 10px;
-            left: -13px;
-            top: 0px;
-            background-color: #eee;
             display: none;
+
+
+            position: absolute;
+            top: 5px;
+            left: -160px;
+            width: 140px;
+            padding: 10px;
+            background-color: rgba(255,0,0,0.6) !important;
+            text-align: right;
+
+              
+            -webkit-transform-origin: 1 1;
+            -webkit-transform: rotate(0deg) translate(0, 0);
+            -moz-transform-origin: 1 1;
+            -moz-transform: rotate(0deg) translate(0, 0);
+            -ms-transform-origin: 1 1;
+            -ms-transform: rotate(0deg) translate(0, 0);
+            transform-origin: 1 1;
+            transform: rotate(0deg) translate(0, 0);
         }
-/*
-        .doctored.doctored-theme-habitat div.doctored-block:hover:after {
-            display: block;
-        }
-*/
         .doctored.doctored-theme-habitat div.doctored-block.selected:after {
-            display: block;
+            display: block;           
         }
 
         .doctored.doctored-theme-habitat div.doctored-block.has_errors:before {

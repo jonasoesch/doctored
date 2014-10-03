@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Erstellt am 07.10.2008, rp
+  Geändert am 02.03.2009, rp > Neue moegliche Elemente hinzugefuegt (Titel_2/Titel_3)
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="Root">
+      <attribute name="Heftnummer" />
+      <attribute name="Jahr" />
+      <attribute name="Rubrik" />
+      <attribute name="URL-w" />
+      <attribute name="Zeitschrift" />
+      <attribute name="e-issn" />
+      <attribute name="issn" />
+      <attribute name="kanton" />
+      <attribute name="lang" />
+      <attribute name="pubdate" />
+      <element name="Text">
+        <element name="Systematik">
+          <element name="Entscheid">
+            <interleave>
+              <oneOrMore>
+                <element name="Abschnitt"><ref name="inline" /></element>
+                <element name="Titel_1"><ref name="inline"></ref></element>
+                <element name="Titel_2"><ref name="inline"></ref></element>
+                <element name="Titel_3"><ref name="inline"></ref></element>
+                <element name="Zusammenfassung_dt"><ref name="inline"></ref></element>
+                <element name="Zusammenfassung_fr"><ref name="inline"></ref></element>
+                <element name="Zusammenfassung_en"><ref name="inline"></ref></element>
+                <element name="Stichwort_dt"><ref name="inline"></ref></element>
+                <element name="Stichwort_fr"><ref name="inline"></ref></element>
+                <element name="Stichwort_en"><ref name="inline"></ref></element>
+                <element name="Anmerkung_dt"><ref name="inline"></ref></element>
+                <element name="Anmerkung_fr"><ref name="inline"></ref></element>
+                <element name="Anmerkung_en"><ref name="inline"></ref></element>
+                <element name="Autor"><ref name="inline"></ref></element>
+                <element name="Entscheid_Nummer"><ref name="inline"></ref></element>
+              </oneOrMore>
+            </interleave>
+          </element>
+        </element>
+      </element>
+    </element>
+  </start>
+  
+  <define name="inline">
+    <mixed>
+      <element name="Kursiv"><text /></element>
+      <element name="Bold"><text/></element>
+      <element name="Hochgestellt"><text /></element>
+      <element name="Seitenzahl"><text /></element>
+    </mixed>
+  </define>
+</grammar>
