@@ -31,17 +31,27 @@ doctored.element_config = {
     }
 };
 
+doctored.element_styles = "doctored/schemas/UniteEnseignement/UE.css";
 
 document.addEventListener('document:loaded', function() {
-    for (var key in doctored.element_config) {
-       if (doctored.element_config.hasOwnProperty(key)) {
-        var selector = "*[data-element="+key+"]";
-        var els = document.querySelectorAll(selector);
-            for (var style in doctored.element_config[key].styles) {
-                for(var i=0; i<els.length; i++) {
-                    els[i].style[style] = doctored.element_config[key].styles[style];
-                }
-            }
-       }
-    }
-});
+
+     var xhReq = new XMLHttpRequest();
+     xhReq.open("GET", "doctored/schemas/UniteEnseignement/UE.css", false);
+     xhReq.send(null);
+     var styleSheet = xhReq.responseText;
+       
+     styleSheet = styleSheet.replace(/\n/gm, "").replace(/((^|[}])\s*)([\w\W_-]+?)(\s*{)/gm, "$2 .doctored .doctored-block[data-element=$3]$4", "m");
+     console.log(styleSheet);
+
+    head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+
+style.type = 'text/css';
+if (style.styleSheet){
+  style.styleSheet.cssText = styleSheet;
+} else {
+  style.appendChild(document.createTextNode(styleSheet));
+}
+
+head.appendChild(style);
+    });

@@ -1,6 +1,7 @@
 Abreviation {
-    background-color: #eee;
+    background-color: #333;
     font-weight: bold;
+    color: #fff;
 }
 
 Titre {
@@ -9,20 +10,38 @@ Titre {
 }
 
 Professeur {
-    background-color: #ffffaa;
+    border: 2px solid black;
+    margin-top: 10px;
 }
 
 Nom {
     text-transform: uppercase;
 }
 
-Prenom {}
-E-Mail {}
-Login {}
-Objectifs {}
-Objectif {}
-Contenus {}
-Contenu {}
+Prenom {
+    
+}
+Email { 
+    color: blue; 
+}
+Login {
+    font-family: Courier, monospace;
+}
+Objectifs { 
+    margin-top: 10px
+}
+Objectif { 
+    display: list-item;
+    list-style: disc outside;
+    padding-left: 4px;
+}
+Contenus {
+    margin-top: 10px;
+}
+Contenu {
+    margin-top: 5px;
+    color: #777;
+}
 Commentaires {}
 Links {}
 Link {}

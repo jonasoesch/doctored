@@ -36,6 +36,9 @@ samp.doctored-tooltip.doctored-theme-flat {
         padding-left: 36px; /* padding right should be left undefined */
         border-radius: 0px;
         border-bottom: solid 1px #f9f9f9;         
+    }
+
+    .doctored-block {
         background: #fff;
     }
 
@@ -1049,14 +1052,21 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
         overflow: visible;
         position: relative;
         padding-right: 0 !important;
-        box-shadow: 0 0 3px rgba(200,200,200,0.3);
+        box-shadow: 0 0 3px rgba(200,200,200,0.1);
     }
 
     .doctored.doctored-theme-habitat .doctored-block.selected {
-        background-color: rgba(200,200,255,0.02);
+            background-color: rgba(0,200,150,0.1) !important;
     }
 
 
+        .doctored.doctored-theme-habitat div.doctored-block:before {
+            display: none
+        }
+
+        .doctored.doctored-theme-habitat div.doctored-block.selected:before {
+            display: block;
+        }
 
         .doctored.doctored-theme-habitat div.doctored-block:after {
             color:#fff; 
@@ -1071,12 +1081,12 @@ samp.doctored-tooltip.doctored-theme-highcontrast {
 
 
             position: absolute;
-            top: 5px;
-            left: -160px;
-            width: 140px;
-            padding: 10px;
-            background-color: rgba(255,0,0,0.6) !important;
-            text-align: right;
+            top: -20px;
+            left: 0px;
+            width: 120px;
+            padding: 5px 10px;
+            background-color: rgba(0,200,150,0.9) !important;
+            text-align: left;
 
               
             -webkit-transform-origin: 1 1;
