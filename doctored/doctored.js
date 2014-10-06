@@ -59,8 +59,8 @@
         scripts        = Array.prototype.slice.call($('script')),
         this_script    = scripts[scripts.length-1],
         manifest       = {
-                         "js" : ["js/app-linters.js", "js/app-util.js", "js/app-schemas.js", "js/app.js", "js/shims.js", "libs/filesaver.js/FileSaver.js"],
-                         "css": ["css/themes.css", "css/screen.css"]
+                         "js" : ["js/app-linters.js", "js/app-util.js", "js/app-schemas.js", "js/app.js", "js/shims.js", "libs/filesaver.js/FileSaver.js", "js/behaviours.js"],
+                         "css": ["css/themes.css", "css/screen.css", "css/voiture.css"]
                          },
         manifest_count = manifest.js.length + manifest.css.length,
         manifest_load  = function(){
