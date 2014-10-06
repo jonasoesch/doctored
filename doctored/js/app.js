@@ -218,6 +218,8 @@
                 document.addEventListener('touchend', this_function(this.drag_end, this), false);
                 window.addEventListener('beforeunload', this_function(this.beforeunload, this), false);
 
+                document.dispatchEvent(new Event("document:loaded"));
+
                 if(this.options.onload) {
                     this_function(this.options.onload, this)();
                 }
