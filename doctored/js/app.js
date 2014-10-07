@@ -250,7 +250,6 @@
                     child_node,
                     line_number = 0;
 
-                    console.log(by_line);
                 for(i = 0; i < this.root.childNodes.length; i++){
                     child_node = this.root.childNodes[i];
 
@@ -982,7 +981,8 @@
         drag_distance_activates_pixels:   25,
         dialog_supression_wait_milliseconds: 5,
         dropzone_class:                   "dropzone",
-        selected_class:                   "selected"
+        selected_class:                   "selected",
+        fallback_element:                 "Contenu" // TODO: Needs to be in a schema-specific config
     };
     doctored.CONSTANTS.block_class  = doctored.CONSTANTS.block_or_inline_class_prefix + 'block';
     doctored.CONSTANTS.inline_class = doctored.CONSTANTS.block_or_inline_class_prefix + 'inline';

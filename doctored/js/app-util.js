@@ -71,9 +71,10 @@
         },
         get_clipboard_xml_as_html_string: function(clipboard){
             var html_string = "",
-                mimetypes_ordered_by_preference_last_most_prefered = ["Text", "text/plain", "text/html", "text/xml"],
+                mimetypes_ordered_by_preference_last_most_prefered = ["Text", "text/plain"],
                 mimetype,
-                i;
+                i,
+                fallback_name = doctored.CONSTANTS.fallback_element;
 
             for(i = 0; i < mimetypes_ordered_by_preference_last_most_prefered.length; i++){
                 mimetype = mimetypes_ordered_by_preference_last_most_prefered[i];
@@ -81,7 +82,8 @@
                     html_string = clipboard.getData(mimetype).toString();
                 }
             }
-            return html_string;
+            
+            return html_string.replace(/(^.*$)/gm, "<"+fallback_name+">$1</"+fallback_name+">");
         },
         set_theme: function(theme_name, instance){
             var filter_themes = function(element){
