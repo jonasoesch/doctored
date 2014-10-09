@@ -13,6 +13,7 @@
 (function(){
     "use strict";
 
+
     doctored.schemas = {
         list: doctored.schemas_manifest,
         get_schema_instance: function(instance, schema_family_id, schema_url){
@@ -86,6 +87,7 @@
                     context,
                     max_depth = 10,
                     selector,
+                    parent_name,
                     gather_below = function(nodes, depth){
                         var node,
                             node_name,
@@ -116,6 +118,20 @@
                             }
                         }
                     };
+
+                   get_parent = function(element) {
+                        var node_name;
+
+                        if(element && element.parentNode && element.parentNode.nodeName === "element") {
+                            parent_name = element.parentNode.getAttribute("name");
+                        } else {
+                            if (element.parentNode !== null ) {
+                                get_parent(element.parentNode);
+                            } else {
+                                parent_name = "root";
+                            }
+                        }
+                    };    
                 if(element_name === doctored.CONSTANTS.root_context) { //then it's the root node so we use different logic because there is no parent node
                     return {elements: {}, attributes: {}}; //FIXME allow different root nodes
                 }
@@ -124,7 +140,10 @@
                     //console.log(element_name, this.schema_elements[element_name]);
                     if(this.schema_elements[element_name]) {
                         gather_below([this.schema_elements[element_name]]);
+                        get_parent(this.schema_elements[element_name]);
+                        
                     }
+                    this.cached_context[element_name].parent = parent_name;
                     this.cached_context[element_name] = context;
                 }
                 return this.cached_context[element_name];
@@ -188,6 +207,7 @@
                     context,
                     max_depth = 25,
                     selector,
+                    parent_name,
                     gather_below = function(nodes, depth){
                         var node,
                             node_name,
@@ -233,16 +253,34 @@
                             }
                             if(depth <= max_depth && node.childNodes.length > 0) gather_below(node.childNodes, depth + 1);
                         }
+                    },
+                    get_parent = function(element) {
+                        var node_name;
+
+                        if(element && element.parentNode && (element.parentNode.nodeName === "xs:element" || element.parentNode.nodeName === "element")) {
+                            parent_name = element.parentNode.getAttribute("name");
+                        } else {
+                            if (element.parentNode !== null ) {
+                                get_parent(element.parentNode);
+                            } else {
+                                parent_name = "root";
+                            }
+                        }
                     };
+
+
                 if(element_name === doctored.CONSTANTS.root_context) { //then it's the root node so we use different logic because there is no parent node
                     return {elements: {}, attributes: {}}; //FIXME allow different root nodes
                 }
                 if(!this.cached_context[element_name]) {
                     context = {elements: {}, attributes: {}};
+                    parent_name = "root";
                     if(this.schema_elements[element_name]) {
                         gather_below(this.schema_elements[element_name].childNodes);
+                        get_parent(_this.schema_elements[element_name]);
                     }
                     this.cached_context[element_name] = context;
+                    this.cached_context[element_name].parent = parent_name;
                 }
                 return this.cached_context[element_name];
             }
