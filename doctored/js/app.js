@@ -195,6 +195,8 @@
                 this.root.parentNode.insertBefore(this.style_select, this.root);
                 this.style_select.addEventListener('click',   this_function(this.style_select_click, this), false);
 
+                document.addEventListener('elements:changed', this_function(this.element_changed, this), false);
+
                 if(manifest) {
                     this.manifest = JSON.parse(manifest);
                     for(i = 0; i < this.manifest.length; i++){
@@ -224,6 +226,9 @@
                     this_function(this.options.onload, this)();
                 }
             },
+            element_changed: function(event){
+                this.lint_soon();
+            },
             move_element: function(event) {
                 this.root.dragging_element = event.target;
             },
@@ -233,6 +238,7 @@
                 this.dragging_element = null;
 
                 doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.dropzone_class);
+                document.dispatchEvent(new Event("elements:changed"));
             },
             lint: function(){
                 // send linting job to one of the workers
@@ -250,6 +256,7 @@
                     child_node,
                     line_number = 0;
 
+                console.log(by_line);
                 for(i = 0; i < this.root.childNodes.length; i++){
                     child_node = this.root.childNodes[i];
 
@@ -497,7 +504,7 @@
                 }
                 doctored_html = doctored.util.convert_xml_to_doctored_html(html);
                 doctored.util.insert_html_at_cursor_position(doctored_html, event);
-                this_function(this.lint_soon, this)();
+                document.dispatchEvent(new Event("elements:changed", {target: $("#editor1")}));
             },
             element_chooser_change: function(event){
                 var element_chooser,
@@ -553,7 +560,7 @@
                     if(!element_name) return doctored.util.remove_old_selection(dialog.target, dialog);
                 }
                 dialog.target.setAttribute("data-element", element_name);
-                this_function(this.lint_soon, this)();
+                document.dispatchEvent(new Event("elements:changed", {target: dialog.target}));
             },
             properties: function(event){
                 // clicking the 'properties' button
@@ -877,7 +884,7 @@
                 doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.selected_class+"-style"); 
                 style.classList.add(doctored.CONSTANTS.selected_class+"style");
 
-                this.lint_soon();
+                document.dispatchEvent(new Event("elements:changed", {target: to_change}));
             },
             new_element_selected: function(target) {
                     var tag,
@@ -898,7 +905,7 @@
 
                 target_clone.innerHTML = "";
                 target.parentNode.insertBefore(target_clone, target.nextSibling);
-                this.lint_soon();
+                document.dispatchEvent(new Event("elements:changed", {target: target_clone}));
             },
             clone_element_above: function(){
                 var target = this.dialog.target,
@@ -906,7 +913,7 @@
 
                 target_clone.innerHTML = "";
                 target.parentNode.insertBefore(target_clone, target);
-                this.lint_soon();
+                document.dispatchEvent(new Event("elements:changed", {target: target_clone}));
             },
             add_attribute_item: function(){
                 var attributes_item = this.dialog.attributes_template.cloneNode(true);
