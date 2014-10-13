@@ -197,6 +197,8 @@
 
                 document.addEventListener('elements:changed', this_function(this.element_changed, this), false);
 
+                window.addEventListener('scroll', this_function(this.scrolled, this), false);
+
                 if(manifest) {
                     this.manifest = JSON.parse(manifest);
                     for(i = 0; i < this.manifest.length; i++){
@@ -224,6 +226,17 @@
 
                 if(this.options.onload) {
                     this_function(this.options.onload, this)();
+                }
+            },
+            scrolled: function(event) {
+                var styler;
+
+                if($('.fixed').length === 0 && window.pageYOffset > 216) {
+                    styler = $('.style_select')[0];
+                    styler.classList.add('fixed');
+                } else if ($('.fixed').length > 0 && window.pageYOffset < 200) {
+                    styler = $('.style_select')[0];
+                    styler.classList.remove('fixed');
                 }
             },
             element_changed: function(event){
@@ -257,7 +270,6 @@
                     child_node,
                     line_number = 0;
 
-                console.log(by_line);
                 for(i = 0; i < this.root.childNodes.length; i++){
                     child_node = this.root.childNodes[i];
 

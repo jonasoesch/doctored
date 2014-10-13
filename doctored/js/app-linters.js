@@ -74,7 +74,7 @@
             }
             switch(event.data.type){
                 case "debug":
-                    return; //console.log("DEBUG: Worker#" + event.data.index + " said: " + event.data.message);
+                    return console.log("DEBUG: Worker#" + event.data.index + " said: " + event.data.message);
                 case "result":
                     if(worker.context) {
                         return worker.callback.bind(worker.context)(event.data.result);

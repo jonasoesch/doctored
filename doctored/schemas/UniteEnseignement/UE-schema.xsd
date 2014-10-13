@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2013 sp1 (http://www.altova.com) by JMS (HEIG VD) -->
 <xs:schema xmlns="ns.comem.ch/admin/plansEtude/UniteEnseignement" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="ns.comem.ch/admin/plansEtude/UniteEnseignement" elementFormDefault="qualified">
-	<xs:include schemaLocation="Datatypes.xsd"/>
 	<xs:element name="Unite">
 		<xs:annotation>
 			<xs:documentation>Définit une unité d'enseignement</xs:documentation>
@@ -83,4 +82,50 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
+
+	<xs:simpleType name="NonEmptyString">
+		<xs:annotation>
+			<xs:documentation>Defines a non-empty string (length > 0)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CoursID">
+		<xs:annotation>
+			<xs:documentation>Identifiant pour un cours</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NonEmptyString"/>
+	</xs:simpleType>
+	<xs:simpleType name="ModuleID">
+		<xs:annotation>
+			<xs:documentation>Identifiant pour un module</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NonEmptyString"/>
+	</xs:simpleType>
+	<xs:simpleType name="PlanEtudeID">
+		<xs:annotation>
+			<xs:documentation>Identifiant pour un module</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NonEmptyString"/>
+	</xs:simpleType>
+	<xs:complexType name="Person">
+		<xs:annotation>
+			<xs:documentation>Describes a person</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Firstname" type="NonEmptyString" minOccurs="0"/>
+			<xs:element name="Lastname" type="NonEmptyString"/>
+			<xs:element name="ShortAbbrev" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Link">
+		<xs:annotation>
+			<xs:documentation>Représente un lien: uri et description</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Uri" type="xs:anyURI"/>
+			<xs:element name="Description" type="NonEmptyString" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
 </xs:schema>

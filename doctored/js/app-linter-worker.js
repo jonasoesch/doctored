@@ -78,7 +78,6 @@
 				response.target = "hi";
 				response.message = line.match(/(\d+:)(.*)/)[2].replace(/element /, "").replace(/.+:/, "");
 				response.type = "error_line";
-				console.log(line);
 			} else {
 				console.log("Unable to parse xmlline_line: " + line);
 			}
@@ -124,6 +123,7 @@
 				console.log("Error. Schema URL must end in either RNG or XSD.")
 		}
 		xmllint_lines = validateXML(module).split("\n");
+
 
 		for(i = 0; i < xmllint_lines.length; i++){
 			xmllint_line = xmllint_lines[i];

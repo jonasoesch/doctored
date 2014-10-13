@@ -65,12 +65,15 @@
             top: 0;
             content: "×"; /*\271B \271A \2795 */
             padding: 0.5em; 
-            white-space:nowrap;
             cursor: pointer;
             font: 16px/16px normal normal "Raleway";
             color: #000;
+            z-index: 99;
         }
 
+        .doctored .has_errors {
+            border-left: 1px solid red;
+        }
         .doctored div.doctored-block.has_errors:before {
             content: attr(data-error);
             overflow:visible;
@@ -80,6 +83,7 @@
             top:4px;
             width:172px;
             clear:both;
+            background-color: #fff;
         }
 
     .doctored div.doctored-inline {
@@ -269,11 +273,19 @@ option.doctored-loading {
 }
 
 .style_select {
-    width: 200px;
-    float: right;
-    margin-left: 15px;
     background-color: white;
+    width: 200px;
+    position: absolute;
+    top: 216px;
+    right: 0;
     border-left: 1px solid #eee;
+}
+
+.style_select.fixed {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    overflow-y: scroll;
 }
 
 
