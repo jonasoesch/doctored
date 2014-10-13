@@ -40,9 +40,9 @@ document.addEventListener('document:loaded', function() {
      xhReq.send(null);
      var styleSheet = xhReq.responseText;
        
-     styleSheet = styleSheet.replace(/\n/gm, "").replace(/((^|[}])\s*)([\w\W_-]+?)(\s*{)/gm, "$2 .doctored .doctored-block[data-element=$3]$4", "m");
+     styleSheet = styleSheet.replace(/\n/gm, "").replace(/((^|[}])\s*)([\w\W_-]+?)(\s*{)/gm, "$2 .doctored .doctored-block[data-element=$3], .style_select .style[data-element=$3]$4", "m");
 
-    head = document.head || document.getElementsByTagName('head')[0],
+    head = document.head || document.getElementsByTagName('head')[0];
     style = document.createElement('style');
 
 style.type = 'text/css';
