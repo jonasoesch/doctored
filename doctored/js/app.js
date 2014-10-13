@@ -228,6 +228,7 @@
             },
             element_changed: function(event){
                 this.lint_soon();
+                doctored.util.wrap_in_parent(event.element, this.schema);
             },
             move_element: function(event) {
                 this.root.dragging_element = event.target;
@@ -238,7 +239,7 @@
                 this.dragging_element = null;
 
                 doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.dropzone_class);
-                document.dispatchEvent(new Event("elements:changed"));
+                doctored.util.elements_changed_event(insertedElement);
             },
             lint: function(){
                 // send linting job to one of the workers
@@ -504,7 +505,7 @@
                 }
                 doctored_html = doctored.util.convert_xml_to_doctored_html(html);
                 doctored.util.insert_html_at_cursor_position(doctored_html, event);
-                document.dispatchEvent(new Event("elements:changed", {target: $("#editor1")}));
+                doctored.util.elements_changed_event($("#editor1"));
             },
             element_chooser_change: function(event){
                 var element_chooser,
@@ -560,7 +561,7 @@
                     if(!element_name) return doctored.util.remove_old_selection(dialog.target, dialog);
                 }
                 dialog.target.setAttribute("data-element", element_name);
-                document.dispatchEvent(new Event("elements:changed", {target: dialog.target}));
+                doctored.util.elements_changed_event(dialog.target);
             },
             properties: function(event){
                 // clicking the 'properties' button
@@ -846,6 +847,7 @@
             },
             click: function(event){
                 
+
                 var browser_selection = doctored.util.get_current_selection(),
                     target   = event.toElement || event.target,
                     mouse_position = event.x || event.clientX ? {x:event.x || event.clientX, y:event.y || event.clientY} : undefined,
@@ -884,7 +886,7 @@
                 doctored.util.remove_class_from_all_elements(doctored.CONSTANTS.selected_class+"-style"); 
                 style.classList.add(doctored.CONSTANTS.selected_class+"style");
 
-                document.dispatchEvent(new Event("elements:changed", {target: to_change}));
+                doctored.util.elements_changed_event(to_change);
             },
             new_element_selected: function(target) {
                     var tag,
@@ -905,7 +907,7 @@
 
                 target_clone.innerHTML = "";
                 target.parentNode.insertBefore(target_clone, target.nextSibling);
-                document.dispatchEvent(new Event("elements:changed", {target: target_clone}));
+                doctored.util.elements_changed_event(target_clone);
             },
             clone_element_above: function(){
                 var target = this.dialog.target,
@@ -913,7 +915,7 @@
 
                 target_clone.innerHTML = "";
                 target.parentNode.insertBefore(target_clone, target);
-                document.dispatchEvent(new Event("elements:changed", {target: target_clone}));
+                doctored.util.elements_changed_event(target_clone);
             },
             add_attribute_item: function(){
                 var attributes_item = this.dialog.attributes_template.cloneNode(true);

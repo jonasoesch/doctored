@@ -41,7 +41,6 @@ document.addEventListener('document:loaded', function() {
      var styleSheet = xhReq.responseText;
        
      styleSheet = styleSheet.replace(/\n/gm, "").replace(/((^|[}])\s*)([\w\W_-]+?)(\s*{)/gm, "$2 .doctored .doctored-block[data-element=$3]$4", "m");
-     console.log(styleSheet);
 
     head = document.head || document.getElementsByTagName('head')[0],
     style = document.createElement('style');

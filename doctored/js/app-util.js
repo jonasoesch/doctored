@@ -767,6 +767,26 @@
                         '</option>';
                 }
             return html;
+        },
+        wrap_in_parent: function(element, schema) {
+            var element_name = element.attributes["data-element"].value;
+            var element_parent = element.parentElement.attributes["data-element"].value;
+            var schema_parent = schema.get_valid_nodes_for_context(element_name).parent;
+            
+            if(schema_parent !== element_parent) {
+                var parent = document.createElement('div');
+                parent.setAttribute('draggable', 'true');
+                parent.setAttribute('data-element', schema_parent);
+                parent.setAttribute('class', 'doctored-block hide_errors');
+                element.parentNode.insertBefore(parent, element);
+                parent.appendChild(element);
+            }
+
+        },
+        elements_changed_event: function(element) {
+                var event = new CustomEvent("elements:changed");
+                event.element = element;
+                document.dispatchEvent(event);
         }
     };
 }());
