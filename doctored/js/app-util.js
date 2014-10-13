@@ -385,7 +385,7 @@
                 mouse = {x:target_offset.left, y:target_offset.top};
             }
             dialog.style.left = mouse.x + "px";
-            dialog.style.top  = mouse.y + "px";
+            dialog.style.top  = mouse.y + window.scrollY + "px"; 
             dialog.mode = "editElement";
             dialog.target = target;
 
