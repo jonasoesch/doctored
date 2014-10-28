@@ -1,1 +1,8 @@
-{"schema-family":"Staempfli"}
+{"schema-family":"Staempfli",
+"elements": {
+    "Root": {
+        "kind": "root",
+        "pattern": "<?xml version='1.0' encoding='UTF-8'?><Root xmlns='test'><Text><Autor>Par</Autor></Text></Root>"
+    }
+}
+}

@@ -1,11 +1,12 @@
 /*globals doctored, console, alert*/
 
+
 (function(){
     "use strict";
     // DO NOT EDIT THE FOLLOWING
     // it is dynamically inserted by schemas/rebuild-schema-manifest.js
     // {MANIFEST-START}
-    doctored.schemas_manifest = [{"schema_family":"DITA","children":[{"schema_family":"1.8","children":[{"schema":"/DITA/1.8/DITA Base.xsd","label":"DITA Base","schema_family":"dita"},{"schema":"/DITA/1.8/DITA Bookmap.xsd","label":"DITA Bookmap","schema_family":"dita"},{"schema":"/DITA/1.8/DITA Topic.xsd","label":"DITA Topic","schema_family":"dita"}]}]},{"schema_family":"DocBook","children":[{"schema":"/DocBook/DocBook 5.0.rng","label":"DocBook 5.0","schema_family":"docbook"}]},{"schema_family":"MARC","children":[{"schema":"/MARC/MARC21.xsd","label":"MARC21","schema_family":"marc"}]},{"schema_family":"Staempfli","children":[{"schema":"/Staempfli/entscheidung.rng","label":"entscheidung","schema_family":"Staempfli"}]},{"schema_family":"TEI","children":[{"schema":"/TEI/TEI 2.6.rng","label":"TEI 2.6","schema_family":"tei"}]},{"schema_family":"TeXML","children":[{"schema":"/TeXML/texml.rng","label":"texml","schema_family":"texml"}]},{"schema_family":"UniteEnseignement","children":[{"schema":"/UniteEnseignement/UE-schema.xsd","label":"UE-schema","schema_family":"UniteEnseignement"}]},{"schema_family":"Voiture","children":[{"schema":"/Voiture/annonceVoiture.xsd","label":"annonceVoiture","schema_family":"voiture"}]},{"schema_family":"phyloXML","children":[{"schema":"/phyloXML/phyloxml.xsd","label":"phyloxml","schema_family":"phyloxml"}]}];
+    doctored.schemas_manifest = [{"schema_family":"DITA","children":[{"schema_family":"1.8","children":[{"schema":"/DITA/1.8/DITA Base.xsd","label":"DITA Base","schema_family":"dita"},{"schema":"/DITA/1.8/DITA Bookmap.xsd","label":"DITA Bookmap","schema_family":"dita"},{"schema":"/DITA/1.8/DITA Topic.xsd","label":"DITA Topic","schema_family":"dita"}]}]},{"schema_family":"DocBook","children":[{"schema":"/DocBook/DocBook 5.0.rng","label":"DocBook 5.0","schema_family":"DocBook"}]},{"schema_family":"MARC","children":[{"schema":"/MARC/MARC21.xsd","label":"MARC21","schema_family":"marc"}]},{"schema_family":"Staempfli","children":[{"schema":"/Staempfli/entscheidung.rng","label":"entscheidung","schema_family":"Staempfli","elements":{"Root":{"kind":"root","pattern":"<?xml version='1.0' encoding='UTF-8'?><Root xmlns='test'><Text><Autor>Par</Autor></Text></Root>"}}}]},{"schema_family":"TEI","children":[{"schema":"/TEI/TEI 2.6.rng","label":"TEI 2.6","schema_family":"tei"}]},{"schema_family":"TeXML","children":[{"schema":"/TeXML/texml.rng","label":"texml","schema_family":"texml"}]},{"schema_family":"UniteEnseignement","children":[{"schema":"/UniteEnseignement/UE-schema.xsd","label":"UE-schema","schema_family":"UniteEnseignement","elements":{"Unite":{"kind":"root","pattern":"<?xml version='1.0' encoding='UTF-8'?><Unite xmlns='ns.comem.ch/admin/plansEtude/UniteEnseignement' periodes='1'8' statut='Brouillon' UUID='c6a656d8-8a49-4164-8d7c-4bdad26d9fa5'><Abreviation>ProjWeb</Abreviation><Titre>Projet d'intégration web</Titre><Professeur><Nom>Philipona</Nom><Prenom>Claude</Prenom><Email>claude.philipona@heig-vd.ch</Email><Login>claude.philipon</Login></Professeur><Professeur><Nom>Hess</Nom><Prenom>Jean-Pierre</Prenom><Email></Email><Login></Login></Professeur><Professeur><Nom>Jaccard</Nom><Prenom>Dominique</Prenom><Email></Email><Login></Login></Professeur><Professeur><Nom>Maksay</Nom><Prenom>Gabor</Prenom><Email></Email><Login></Login></Professeur><Professeur><Nom>Rappo</Nom><Prenom>Daniel</Prenom><Email></Email><Login></Login></Professeur><Professeur><Nom>Ertz</Nom><Prenom>Olivier</Prenom><Email></Email><Login></Login></Professeur><Professeur><Nom>Bürki</Nom><Prenom>Dominique</Prenom><Email></Email><Login></Login></Professeur><Objectifs><Objectif title='false'>Intégrer les notions acquises dans les cours théoriques et pratiques de base.</Objectif><Objectif title='false'>Réaliser en groupe un premier projet technique multidisciplinaire. Les cours théoriques et pratiques de base concernés sont notamment: Gestion de projet, Modélisation de bases de données et des traitement, Algorithmie, HTML et XML, Programmation, Administration des bases de données.</Objectif></Objectifs><Contenus><Contenu title='false'>Le projet consiste à développer une application Web interactive impliquant l’utilisation de bases de données dans un modèle n-tiers, séparant la logique « données, traitement et présentation ».</Contenu><Contenu title='false'>En principe, il n’y a pas d’enseignement théorique durant les projets, uniquement de la pratique, les projets s’appuyant sur la théorie des cours de base. Toutefois, en cas de constatation de lacunes généralisées, un enseignant peut être amené à faire une intervention pour l’ensemble de la classe. En règle générale, les interventions et encadrements se font au niveau des groupes.</Contenu><Contenu title='false'>Afin de faciliter l’intégration des notions acquises dans les cours de base, les enseignants concernés par ces différentes branches sont impliqués activement dans l'encadrement du projet avec pour buts: d’encadrer les étudiants dans son domaine de compétence, de s’assurer de la cohésion avec les cours de base, de s’assurer que les étudiants appliquent correctement les notions acquises dans les cours de base, de juger le travail des étudiants dans son domaine de compétence.</Contenu></Contenus></Unite>"},"Abbreviation":{"kind":"block"},"Titre":{"kind":"block"},"Professeur":{"kind":"container","pattern":"<Professeur><Nom>Maksay</Nom><Prenom>Gabor</Prenom><Email>gabor.maksay@heig-vd.ch</Email><Login>gaborm</Login></Professeur>"},"Nom":{"kind":"block"},"Prenom":{"kind":"block"},"Email":{"kind":"block"},"Login":{"kind":"block"},"Objectifs":{"kind":"container","pattern":"<Objectifs><Objectif>Créer un site</Objectif><Objectif>Mettre en ligne</Objectif>"},"Objectif":{"kind":"block"},"Contentus":{"kind":"container","pattern":"<Contentus><Contenu>On va créer un site</Contenu><Contenu>Et le mettre en ligne</Contenu><Contenus>"},"Contenu":{"kind":"block"},"Commentaires":{"kind":"container","pattern":"<Commentaires><Commentaire>Nous pouvons travailler que sur PHP</Commentaire></Commentaires>"},"Commentaire":{"kind":"block"},"Links":{"kind":"container"},"Link":{"kind":"block"},"Text":{"kind":"block"},"Url":{"kind":"block"},"ShortAbbrev":{"kind":"block"},"Uri":{"kind":"inline"},"Description":{"kind":"block"}}}]},{"schema_family":"Voiture","children":[{"schema":"/Voiture/annonceVoiture.xsd","label":"annonceVoiture","schema_family":"voiture"}]},{"schema_family":"phyloXML","children":[{"schema":"/phyloXML/phyloxml.xsd","label":"phyloxml","schema_family":"phyloxml"}]}];
     // {MANIFEST-END}
     // DO NOT EDIT THE PRECEDING
 }());
@@ -15,8 +16,11 @@
 
 
     doctored.schemas = {
+ 
         list: doctored.schemas_manifest,
         get_schema_instance: function(instance, schema_family_id, schema_url){
+
+            build_schema_family();
             var schema_family = doctored.schema_family[schema_family_id],
                 this_function = doctored.util.this_function,
                 clone_of_schema_family;
@@ -30,6 +34,8 @@
             return clone_of_schema_family;
         }
     };
+
+
 
     var $ = doctored.$,
         $xml = doctored.$xml,
@@ -86,15 +92,12 @@
                 var _this = this,
                     context,
                     max_depth = 10,
-                    selector,
                     parent_name,
                     gather_below = function(nodes, depth){
                         var node,
                             node_name,
                             node_attribute_name,
-                            i,
-                            child_elements,
-                            child_element_name;
+                            i;
 
                         if(depth === undefined) depth = 0;
                         for(i = 0; i < nodes.length; i++){
@@ -117,10 +120,9 @@
                                     if(depth <= max_depth && node.childNodes.length > 0) gather_below(node.childNodes, depth + 1);
                             }
                         }
-                    };
+                    },
 
                    get_parent = function(element) {
-                        var node_name;
 
                         if(element && element.parentNode && element.parentNode.nodeName === "element") {
                             parent_name = element.parentNode.getAttribute("name");
@@ -140,11 +142,14 @@
                     //console.log(element_name, this.schema_elements[element_name]);
                     if(this.schema_elements[element_name]) {
                         gather_below([this.schema_elements[element_name]]);
-                        get_parent(this.schema_elements[element_name]);
+                        get_parent(this.schema_elements[element_name]); //FIX
                         
                     }
-                    this.cached_context[element_name].parent = parent_name;
+                    if(this.cached_context[element_name] !== undefined) {
+                        this.cached_context[element_name].parent = parent_name;
+                    }
                     this.cached_context[element_name] = context;
+                    
                 }
                 return this.cached_context[element_name];
             }
@@ -206,7 +211,6 @@
                 var _this = this,
                     context,
                     max_depth = 25,
-                    selector,
                     parent_name,
                     gather_below = function(nodes, depth){
                         var node,
@@ -214,9 +218,7 @@
                             node_attribute_name,
                             node_attribute_ref,
                             node_attribute_base,
-                            i,
-                            child_elements,
-                            child_element_name;
+                            i;
 
                         if(depth === undefined) depth = 0;
                         for(i = 0; i < nodes.length; i++){
@@ -255,7 +257,6 @@
                         }
                     },
                     get_parent = function(element) {
-                        var node_name;
 
                         if(element && element.parentNode && (element.parentNode.nodeName === "xs:element" || element.parentNode.nodeName === "element")) {
                             parent_name = element.parentNode.getAttribute("name");
@@ -283,6 +284,35 @@
                     this.cached_context[element_name].parent = parent_name;
                 }
                 return this.cached_context[element_name];
+            }
+        },
+        build_schema_family = function() {
+            doctored.schema_family = {};
+            
+            for(var i=0; i < doctored.schemas_manifest.length; i++) {
+            
+
+                var schema = doctored.schemas_manifest[i],
+                    schema_family_name = schema.schema_family,
+                    pattern = "<root>No pattern for root defined</root>";
+
+                schema.children.forEach(function(child){
+                    if(child.elements !== undefined){
+                        for(var element in child.elements) {
+                            if(child.elements.hasOwnProperty(element)) {
+                                if(child.elements[element].kind === "root") {
+                                   pattern = child.elements[element].pattern;
+                                }
+                            }
+                        }
+                    }
+                });
+
+
+                doctored.schema_family[schema_family_name] = {
+                    name: schema_family_name,
+                    new_document_xml: pattern
+                };
             }
         },
         schema_init = function(instance, schema_url, new_document){
@@ -318,16 +348,31 @@
                 }
                 this_function(this.cache_useful_stuff_from_schema, this)();
                 this_function(this.update_element_chooser, this)();
+                this_function(update_style_pane, this)();
                 if(new_document) this_function(this.new_document, this)();
                 this_function(this.instance.lint_soon, this.instance)();
-                var elements = Object.keys(this.elements);
-                var style_pane = $(".style_select").item(0);
-                var html = "";
-                for(var i=0; i<elements.length; i++){
-                    html += "<li class='style' data-element='"+elements[i]+"'>"+elements[i]+"</li>";
-                }
-                style_pane.innerHTML = html;
             }, this);
+        },
+        update_style_pane = function() {
+                var style_pane = $(".style_select").item(0),
+                    context = doctored.util.this_function(this.get_valid_nodes_for_context, this)("UniteEnseignement"), //TODO
+                    html = "",
+                    elements,
+                    el;
+
+                if(context.elements.length > 0) {
+                    elements = context.elements;
+                } else {
+                    elements = this.elements;
+                }
+
+                for(el in elements) {
+                    if(elements.hasOwnProperty(el)) {
+                        html += "<li class='style' data-element='"+el+"'>"+el+"</li>";
+                    }
+                }
+
+                style_pane.innerHTML = html;
         },
         update_element_chooser = function(){
             var element_chooser = this.instance.dialog.element_chooser,
@@ -351,7 +396,6 @@
         set_dialog_context = function(dialog, elements_under_element_name, attributes_for_element_name, existing_attributes){
             var this_function       = doctored.util.this_function,
                 context_chooser     = dialog.element_chooser.context_chooser || $("optgroup", dialog.element_chooser)[0],
-                element_chooser     = dialog.element_chooser,
                 number_of_elements,
                 attribute_pair,
                 context,
@@ -390,8 +434,10 @@
                 dialog.attributes_title.innerHTML = "Attributes for " + doctored.util.escape_text(attributes_for_element_name);
             }
         };
-       
 
+
+       
+/*
     doctored.schema_family = { //a way of grouping multiple schemas into types (e.g. DocBook 4 and 5 are both "docbook")
         docbook: {
             name: "DocBook 5",
@@ -443,11 +489,12 @@
         'Staempfli': {
             name: "Staempfli",
             inline_elements: ['Kursiv', 'Bold'],
-            new_document_xml: '<?xml version="1.0" encoding="UTF-8"?><Root><Text><Autor>Par</Autor></Text></Root>'
+            new_document_xml: '<?xml version="1.0" encoding="UTF-8"?><Root xmlns="test"><Text><Autor>Par</Autor></Text></Root>'
         }
     };
 
-
+*/
 
 }());
+
 

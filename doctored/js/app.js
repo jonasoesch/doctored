@@ -222,11 +222,15 @@
                 document.addEventListener('touchend', this_function(this.drag_end, this), false);
                 window.addEventListener('beforeunload', this_function(this.beforeunload, this), false);
 
+                // Behaviours
+                document.addEventListener('document:loaded', this_function(doctored.behaviours.style_elements, this), false);
+
                 document.dispatchEvent(new Event("document:loaded"));
 
                 if(this.options.onload) {
                     this_function(this.options.onload, this)();
                 }
+
             },
             scrolled: function(event) {
                 var styler;
@@ -577,8 +581,8 @@
             },
             properties: function(event){
                 // clicking the 'properties' button
-                doctored.util.display_element_dialog(this.root, this.dialog, undefined, doctored.CONSTANTS.root_context, this.schema);
                 event.preventDefault();
+                doctored.util.display_element_dialog(this.root, this.dialog, undefined, doctored.CONSTANTS.root_context, this.schema);
             },
             hamburger_button_click: function(event){
                 var position = this.hamburger_button.getBoundingClientRect();
@@ -858,7 +862,7 @@
 
             },
             click: function(event){
-                
+               
 
                 var browser_selection = doctored.util.get_current_selection(),
                     target   = event.toElement || event.target,

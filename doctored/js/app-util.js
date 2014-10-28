@@ -769,6 +769,7 @@
             return html;
         },
         wrap_in_parent: function(element, schema) {
+            return; // don't do that for the moment // TODO
             var element_name = element.attributes["data-element"].value;
             var element_parent = element.parentElement.attributes["data-element"].value;
             var schema_parent = schema.get_valid_nodes_for_context(element_name).parent;

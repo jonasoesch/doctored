@@ -294,6 +294,9 @@ option.doctored-loading {
     list-style: none;
     border-bottom: 1px solid #eee;
     padding: 10px;
+    float: none !important;
+    box-shadow: none !important;
+    margin: 0px !important;
 }
 
 .selected {

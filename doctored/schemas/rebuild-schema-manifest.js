@@ -1,4 +1,5 @@
 /*globals require, __filename, __dirname, console, process */
+
 (function(){
     "use strict";
  
@@ -11,9 +12,9 @@
         app_schemas_marker = /\{MANIFEST\-START\}[\s\S]*?\{MANIFEST\-END\}/g,
         app_schemas_path = path.join(path.dirname(approot), 'js', 'app-schemas.js'),
         manifest_path = path.join(approot, 'manifest.json'),
-        blacklist = [path.basename(__filename), 'manifest.json', 'options.json', 'README.txt', '.DS_Store', 'min'],
+        blacklist = [path.basename(__filename), 'manifest.json', 'options.json', 'README.txt', '.DS_Store', 'min', 'styles.css'],
         manifest = {},
-        get_schema_family = function(full_path){
+        get_json = function(full_path){
             var file_options = full_path.substr(0, full_path.length - path.extname(full_path).length) + '.json',
                 directory_options = path.dirname(full_path) + '/config.json',
                 options_path;
@@ -26,7 +27,7 @@
                 console.log("Can't find options file for schema at either " + file_options + " or " + directory_options + ". This file should define the schema-family so that Doctored.js can offer a better UI for editing. The schema-family value should align with a key in app-schemas.js and the variable doctored.schema_family = { ... ");
                 process.exit();
             }
-            return JSON.parse(fs.readFileSync(options_path))['schema-family'];
+            return JSON.parse(fs.readFileSync(options_path));
         },
         walk = function(files, current_directory){
             var i,
@@ -45,10 +46,12 @@
                         children: walk(fs.readdirSync(full_path), full_path)
                     });
                 } else {
+                    var json = get_json(full_path);
                     manifest.push({
                         schema: full_path.replace(approot, ''),
                         label: file.replace(path.extname(file), ''),
-                        schema_family: get_schema_family(full_path)
+                        schema_family: json['schema-family'],
+                        elements: json['elements']
                     });
                 }
             }
