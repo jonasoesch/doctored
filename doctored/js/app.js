@@ -299,7 +299,7 @@
                     this.root.classList.remove("valid");
                 }
             },
-           get_xml_string: function(){
+            get_xml_string: function(){
                 if(this.root.childNodes.length === 0) return false;
 
                 return doctored.CONSTANTS.xml_declaration +
@@ -888,6 +888,7 @@
 
                 if(target.classList.contains(doctored.CONSTANTS.block_class)) {
                     this.new_element_selected(target);
+                    doctored.util.update_style_pane(target, this.dialog, mouse_position, target.parentNode.getAttribute("data-element"), this.schema);
                 }
             },
             style_select_click: function(event) {

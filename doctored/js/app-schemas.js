@@ -31,6 +31,7 @@
             if(!clone_of_schema_family.new_document)           clone_of_schema_family.new_document           = new_document;
             if(!clone_of_schema_family.update_element_chooser) clone_of_schema_family.update_element_chooser = update_element_chooser;
             if(!clone_of_schema_family.set_dialog_context)     clone_of_schema_family.set_dialog_context     = set_dialog_context;
+            if(!clone_of_schema_family.update_style_pane)      clone_of_schema_family.update_style_pane      = update_style_pane;
             return clone_of_schema_family;
         }
     };
@@ -353,17 +354,17 @@
                 this_function(this.instance.lint_soon, this.instance)();
             }, this);
         },
-        update_style_pane = function() {
+        update_style_pane = function(element) {
                 var style_pane = $(".style_select").item(0),
-                    context = doctored.util.this_function(this.get_valid_nodes_for_context, this)("UniteEnseignement"), //TODO
+                    context = doctored.util.this_function(this.get_valid_nodes_for_context, this)(element),
                     html = "",
                     elements,
                     el;
 
-                if(context.elements.length > 0) {
-                    elements = context.elements;
-                } else {
+                if(doctored.util.isEmpty(context.elements)) {
                     elements = this.elements;
+                } else {
+                    elements = context.elements;
                 }
 
                 for(el in elements) {
@@ -414,6 +415,8 @@
                     context_chooser.innerHTML = doctored.util.to_options_tags(context.elements, true);
                 }
             }
+
+
             if(attributes_for_element_name){
                 //step 1. clear existing attributes that are empty
                 
@@ -432,6 +435,7 @@
                     }
                 }
                 dialog.attributes_title.innerHTML = "Attributes for " + doctored.util.escape_text(attributes_for_element_name);
+
             }
         };
 

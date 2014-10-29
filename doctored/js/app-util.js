@@ -406,6 +406,15 @@
             dialog.element_chooser.focus();
             dialog.style.display = "block";
         },
+        update_style_pane: function(target, dialog, mouse, context_element, schema){
+
+            var this_function = doctored.util.this_function,
+                is_root       = target.classList.contains("doctored"),
+                is_inline     = target.classList.contains(doctored.CONSTANTS.inline_class);
+
+            this_function(schema.update_style_pane, schema)(context_element);
+
+        },
         process_schema_groups: function(items, depth){
             var i = 0,
                 item,
@@ -788,6 +797,9 @@
                 var event = new CustomEvent("elements:changed");
                 event.element = element;
                 document.dispatchEvent(event);
+        },
+        isEmpty: function(value){
+            return Boolean(value && typeof value == 'object') && !Object.keys(value).length;
         }
     };
 }());
